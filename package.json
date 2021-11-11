@@ -1,0 +1,26 @@
+{
+  "name": "dnd-5e-api",
+  "version": "1.0.0",
+  "description": "An API For Dungeons and Dragons 5th Edition, developed using a TDD mindset",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebadams/dnd-5e-api.git"
+  },
+  "author": "thebadams",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thebadams/dnd-5e-api/issues"
+  },
+  "homepage": "https://github.com/thebadams/dnd-5e-api#readme",
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "mongodb-memory-server": "^8.0.2"
+  },
+  "dependencies": {
+    "mongoose": "^6.0.12"
+  }
+}
