@@ -34,6 +34,7 @@ describe('Spell Schema', () => {
         level: 3,
         school: 'Evocation',
         castingTime: '1 Action',
+        range: '150 Ft',
         components,
         duration: 'Instantaneous',
         description
@@ -81,8 +82,13 @@ describe('Spell Schema', () => {
       });
     });
     describe('Range Property', () => {
-      test.todo('Should Have A "range" Property');
-      test.todo('Should Be The String, "150 feet"')
+      it('Should Have A "range" Property', () => {
+        expect(newSpell).toHaveProperty('range');
+      });
+      it('Should Be The String, "150 Ft"', () => {
+        expect(typeof newSpell.range).toBe('string')
+        expect(newSpell.range).toBe('150 Ft')
+      })
 
     });
     describe('Components Property', () => {
