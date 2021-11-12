@@ -54,8 +54,13 @@ describe('Spell Schema', () => {
       });
     });
     describe('Level Property', () => {
-      test.todo('Should Have A "level" Property');
-      test.todo('Should Be The Number "3"');
+      it('Should Have A "level" Property', () => {
+        expect(newSpell).toHaveProperty('level');
+      });
+      it('Should Be The Number "3"', () => {
+        expect(typeof newSpell.level).toBe('number');
+        expect(newSpell.number).toBe(3);
+      });
     });
     describe('School Property', () => {
       test.todo('Should Have A "school" Property');
