@@ -59,7 +59,7 @@ describe('Spell Schema', () => {
       });
       it('Should Be The Number "3"', () => {
         expect(typeof newSpell.level).toBe('number');
-        expect(newSpell.number).toBe(3);
+        expect(newSpell.level).toBe(3);
       });
     });
     describe('School Property', () => {
