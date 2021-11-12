@@ -92,11 +92,30 @@ describe('Spell Schema', () => {
 
     });
     describe('Components Property', () => {
-      test.todo('Should Have A "components Property"')
-      test.todo('Should Be An Object With "v", "s", "m" Properties')
-      test.todo('Component "v" Property Should Be "true" Boolean');
-      test.todo('Component "s" Property Should Be "true" Boolean');
-      test.todo('Component "m" Property Should Be String "a tiny ball of bat guano and sulfur"');
+      it('Should Have A "components Property"', () => {
+        expect(newSpell).toHaveProperty('components');
+      })
+      it('Should Be An Object With "v", "s", "m" Properties', () => {
+        expect(typeof newSpell.components).toBe('object');
+        expect(newSpell.components).toHaveProperty('v');
+        expect(newSpell.components).toHaveProperty('s');
+        expect(newSpells.components).toHaveProperty('m');
+      })
+      test('Component "v" Property Should Be "true" Boolean', () => {
+        const { components: {v} } = newSpell;
+        expect(typeof v).toBe('boolean')
+        expect(v).toBe(true)
+      });
+      test('Component "s" Property Should Be "true" Boolean', () => {
+        const { components: {s} } = newSpell
+        expect(typeof s).toBe('boolean')
+        expect(s).toBe(true);
+      });
+      test('Component "m" Property Should Be String "a tiny ball of bat guano and sulfur"', () => {
+        const { components: {m} } = newSpell
+        expect(typeof m).toBe('string')
+        expect(m).toBe('a tiny ball of bat guano and sulfur');
+      });
     });
     describe('Duration Property', () => {
       test.todo('Should Have A "duration" Property');
