@@ -18,8 +18,11 @@ describe('Spell Schema', () => {
     await mongod.stop().then(() => console.log('Database Torn Down'))
   })
   describe('Spell Schema Properties', () => {
+    let newSpell
+    beforeAll(async () => {
+      newSpell = await Spell.create({})
+    })
     it('Should Have An _id Property', async () => {
-      const newSpell = await Spell.create({})
       expect(newSpell).toHaveProperty('_id')
     })
   })
