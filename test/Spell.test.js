@@ -99,7 +99,7 @@ describe('Spell Schema', () => {
         expect(typeof newSpell.components).toBe('object');
         expect(newSpell.components).toHaveProperty('v');
         expect(newSpell.components).toHaveProperty('s');
-        expect(newSpells.components).toHaveProperty('m');
+        expect(newSpell.components).toHaveProperty('m');
       })
       test('Component "v" Property Should Be "true" Boolean', () => {
         const { components: {v} } = newSpell;
