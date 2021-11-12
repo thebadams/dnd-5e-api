@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const spellSchema = new Schema({
   name: String,
-  level: Number
+  level: Number,
+  school: String
 });
 
 const Spell = mongoose.model('Spell', spellSchema);
