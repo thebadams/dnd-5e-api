@@ -127,10 +127,25 @@ describe('Spell Schema', () => {
       });
     });
     describe('Description Property', () => {
-      test.todo('Should Have A "description" Property');
-      test.todo('Should Be An Object With "main" and "atHigherLevels" Properties');
-      test.todo('Description "main" Property Should Be The String "A Ball of Fire Appears, Doing Fire Damage"')
-      test.todo('Description "atHigherLevels" Property Should Be The String "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."')
+      it('Should Have A "description" Property', () => {
+        expect(newSpell).toHaveProperty('description');
+      });
+      it('Should Be An Object With "main" and "atHigherLevels" Properties', () => {
+        const { description } = newSpell
+        expect(typeof description).toBe('object');
+        expect(description).toHaveProperty('main');
+        expect(description).toHaveProperty('atHigherLevels');
+      });
+      test('Description "main" Property Should Be The String "A Ball of Fire Appears, Doing Fire Damage"', () => {
+        const { description: { main }} = newSpell;
+        expect(typeof main).toBe('string');
+        expect(main).toBe('A Ball of Fire Appears, Doing Fire Damage');
+      })
+      test('Description "atHigherLevels" Property Should Be The String "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."', () => {
+        const { description: { atHigherLevels }} = newSpell;
+        expect(typeof atHigherLevels).toBe('string');
+        expect(atHigherLevels).toBe('When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.')
+      })
     })
     
   })
