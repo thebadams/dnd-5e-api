@@ -12,7 +12,8 @@ const spellSchema = new Schema({
     v: Boolean,
     s: Boolean,
     m: String
-  }
+  },
+  duration: String
 });
 
 const Spell = mongoose.model('Spell', spellSchema);
