@@ -72,8 +72,13 @@ describe('Spell Schema', () => {
       });
     });
     describe('Casting Time Property', () => {
-      test.todo('Should Have A "castingTime" Property');
-      test.todo('Should Be The String, "1 Action"');
+      it('Should Have A "castingTime" Property', () => {
+        expect(newSpell).toHaveProperty('castingTime');
+      });
+      it('Should Be The String, "1 Action"', () => {
+        expect(typeof newSpell.castingTime).toBe('string');
+        expect(newSpell.castingTime).toBe('1 Action');
+      });
     });
     describe('Range Property', () => {
       test.todo('Should Have A "range" Property');
