@@ -63,8 +63,13 @@ describe('Spell Schema', () => {
       });
     });
     describe('School Property', () => {
-      test.todo('Should Have A "school" Property');
-      test.todo('Should Be The String, "Evocation"');
+      it('Should Have A "school" Property', () => {
+        expect(newSpell).toHaveProperty('school');
+      });
+      it('Should Be The String, "Evocation"', () => {
+        expect(typeof newSpell.school).toBe('string')
+        expect(newSpell.school).toBe('Evocation')
+      });
     });
     describe('Casting Time Property', () => {
       test.todo('Should Have A "castingTime" Property');
