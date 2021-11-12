@@ -118,8 +118,13 @@ describe('Spell Schema', () => {
       });
     });
     describe('Duration Property', () => {
-      test.todo('Should Have A "duration" Property');
-      test.todo('Should Be The String, "Instantaneous"');
+      it('Should Have A "duration" Property', () => {
+        expect(newSpell).toHaveProperty('duration');
+      });
+      it('Should Be The String, "Instantaneous"', () => {
+        expect(typeof newSpell.duration).toBe('string');
+        expect(newSpell.duration).toBe('Instantaneous')
+      });
     });
     describe('Description Property', () => {
       test.todo('Should Have A "description" Property');
