@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import * as mongoose from 'mongoose';
-import Spell, {spellInterface} from '../../models/Spell';
+import Spell, {ISpell} from '../../models/Spell';
 
 describe('Spell Schema', () => {
 	let mongod : MongoMemoryServer;
@@ -19,7 +19,7 @@ describe('Spell Schema', () => {
 		await mongod.stop().then(() => console.log('Database Torn Down'));
 	});
 	describe('Spell Schema Properties', () => {
-		let newSpell: spellInterface;
+		let newSpell: ISpell;
 		beforeAll(async () => {
 			const components = {
 				v: true,

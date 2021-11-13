@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-export interface spellInterface {
+export interface ISpell {
   name: string;
   level: number;
   school: string;
@@ -20,7 +20,7 @@ export interface spellInterface {
   };
 }
 
-const spellSchema = new Schema<spellInterface>({
+const spellSchema = new Schema<ISpell>({
 	name: {
 		type: String,
 		required: [true, 'Name Must Be Provided']
@@ -41,6 +41,6 @@ const spellSchema = new Schema<spellInterface>({
 	}
 });
 
-const Spell = mongoose.model<spellInterface>('Spell', spellSchema);
+const Spell = mongoose.model<ISpell>('Spell', spellSchema);
 
 export default Spell;
