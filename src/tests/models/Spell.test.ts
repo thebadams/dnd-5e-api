@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import * as mongoose from 'mongoose';
-import Spell, {spellInterface} from '../models/Spell';
+import Spell, {spellInterface} from '../../models/Spell';
 
 describe('Spell Schema', () => {
   let mongod : MongoMemoryServer

@@ -4,7 +4,8 @@
   "description": "An API For Dungeons and Dragons 5th Edition, developed using a TDD mindset",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
