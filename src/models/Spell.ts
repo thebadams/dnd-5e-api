@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-interface spellInterface {
+export interface spellInterface {
   name: string;
   level: number;
   school: string;

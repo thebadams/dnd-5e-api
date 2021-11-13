@@ -1,16 +1,17 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import mongoose from 'mongoose';
-import Spell from '../models/Spell';
+import * as mongoose from 'mongoose';
+import Spell, {spellInterface} from '../models/Spell';
 
 describe('Spell Schema', () => {
-  let mongod
+  let mongod : MongoMemoryServer
   beforeAll(async () => {
     mongod = await MongoMemoryServer.create()
     const uri = mongod.getUri()
-    await mongoose.connect(uri, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true
-    }).then(() => console.log('Connected To Database'))
+    // const connectOptions = {
+    //   useUnifiedTopology: true,
+    //   useNewUrlParser: true
+    // }
+    await mongoose.connect(uri).then(() => console.log('Connected To Database'))
   })
 
   afterAll(async () => {
@@ -18,7 +19,7 @@ describe('Spell Schema', () => {
     await mongod.stop().then(() => console.log('Database Torn Down'))
   })
   describe('Spell Schema Properties', () => {
-    let newSpell
+    let newSpell: spellInterface
     beforeAll(async () => {
       const components = {
         v: true,
