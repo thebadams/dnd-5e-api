@@ -151,8 +151,9 @@ describe('Spell Schema', () => {
     
 	});
 	describe('Spell Model Validation', () => {
-		test('Spell Name Is Required; If None Is Passed In, Throw Error', () => {
-			return expect(async () => {
+		describe('Name Validation', () => {
+			let badSpell: any;
+			beforeAll(async () => {
 				const components = {
 					v: true,
 					s: true,
@@ -173,10 +174,26 @@ describe('Spell Schema', () => {
 					description
 				};
 
+
+				badSpell = await Spell.create(badSpellInfo).catch((e) => e);
+				
+				
+			});
+			test('Spell Name Is Required; If None Is Passed In, Throw Error', () => {
+				expect(badSpell).toBeInstanceOf(mongoose.Error.ValidationError);
+			});
+			test('Spell Name Reqired; Validation Message Is "Name Must Be Provided"', () => {
+				const expected  = {
+					properties: expect.objectContaining({message: 'Name Must Be Provided', type: 'required', path: 'name'}
+					),
+					kind: 'required',
+					path: 'name'
+				};
+				expect(badSpell).toHaveProperty('errors');
+				expect(badSpell.errors).toHaveProperty('name', expect.objectContaining(expected));
         
-				await Spell.create(badSpellInfo);
-        
-			}).rejects.toBeInstanceOf(mongoose.Error.ValidationError);
+			});
 		});
+		
 	});
 });
