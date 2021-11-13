@@ -152,7 +152,7 @@ describe('Spell Schema', () => {
 	});
 	describe('Spell Model Validation', () => {
 		describe('Name Validation', () => {
-			let badSpell: any;
+			let badSpell: mongoose.Error.ValidationError;
 			beforeAll(async () => {
 				const components = {
 					v: true,
