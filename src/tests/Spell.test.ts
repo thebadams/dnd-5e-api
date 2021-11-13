@@ -1,6 +1,6 @@
-const { MongoMemoryServer } = require('mongodb-memory-server');
-const mongoose = require('mongoose');
-const Spell = require('../models/Spell');
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
+import Spell from '../models/Spell';
 
 describe('Spell Schema', () => {
   let mongod
