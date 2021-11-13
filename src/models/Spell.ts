@@ -21,26 +21,26 @@ export interface spellInterface {
 }
 
 const spellSchema = new Schema<spellInterface>({
-  name: {
-    type: String,
-    required: [true, 'Name Must Be Provided']
-  },
-  level: Number,
-  school: String,
-  castingTime: String,
-  range: String,
-  components: {
-    v: Boolean,
-    s: Boolean,
-    m: String
-  },
-  duration: String,
-  description: {
-    main: String,
-    atHigherLevels: String
-  }
+	name: {
+		type: String,
+		required: [true, 'Name Must Be Provided']
+	},
+	level: Number,
+	school: String,
+	castingTime: String,
+	range: String,
+	components: {
+		v: Boolean,
+		s: Boolean,
+		m: String
+	},
+	duration: String,
+	description: {
+		main: String,
+		atHigherLevels: String
+	}
 });
 
 const Spell = mongoose.model<spellInterface>('Spell', spellSchema);
 
-export default Spell
+export default Spell;

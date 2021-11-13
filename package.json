@@ -19,6 +19,9 @@
   "homepage": "https://github.com/thebadams/dnd-5e-api#readme",
   "devDependencies": {
     "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "eslint": "^8.2.0",
     "jest": "^27.3.1",
     "mongodb-memory-server": "^8.0.2",
     "ts-jest": "^27.0.7"
