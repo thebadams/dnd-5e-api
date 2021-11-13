@@ -150,4 +150,33 @@ describe('Spell Schema', () => {
     })
     
   })
+  describe('Spell Model Validation', () => {
+    test('Spell Name Is Required; If None Is Passed In, Throw Error', () => {
+      return expect(async () => {
+        const components = {
+          v: true,
+          s: true,
+          m: 'bat guano and sulfur'
+        }
+
+        const description = {
+          main: `A Ball of Fire Appears, Doing Fire Damage`,
+          atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
+        }
+        const badSpellInfo = {
+          level: 3,
+          school: 'Evocation',
+          castingTime: '1 Action',
+          range: '150 Ft',
+          components,
+          duration: 'Instantaneous',
+          description
+        }
+
+        
+          await Spell.create(badSpellInfo)
+        
+      }).rejects.toBeInstanceOf(mongoose.Error.ValidationError);
+    })
+  })
 })

@@ -21,7 +21,10 @@ export interface spellInterface {
 }
 
 const spellSchema = new Schema<spellInterface>({
-  name: String,
+  name: {
+    type: String,
+    required: [true, 'Name Must Be Provided']
+  },
   level: Number,
   school: String,
   castingTime: String,
