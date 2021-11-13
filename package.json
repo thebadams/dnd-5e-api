@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/thebadams/dnd-5e-api#readme",
   "devDependencies": {
+    "@types/jest": "^27.0.2",
     "jest": "^27.3.1",
-    "mongodb-memory-server": "^8.0.2"
+    "mongodb-memory-server": "^8.0.2",
+    "ts-jest": "^27.0.7"
   },
   "dependencies": {
     "mongoose": "^6.0.12"
