@@ -20,6 +20,12 @@ export interface ISpell {
   };
 }
 
+export interface IComponents {
+	v: boolean;
+	s: boolean;
+	m: string;
+}
+
 const spellSchema = new Schema<ISpell>({
 	name: {
 		type: String,
