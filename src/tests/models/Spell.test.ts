@@ -148,6 +148,10 @@ describe('Spell Schema', () => {
 				expect(atHigherLevels).toBe('When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.');
 			});
 		});
+		describe('Concentration Property', () => {
+			test.todo('New Spell Should Have A Property, "concentration"');
+			test.todo('Concentration Property Should Be The Boolean: false');
+		});
     
 	});
 	describe('Spell Model Validation', () => {
@@ -194,6 +198,39 @@ describe('Spell Schema', () => {
         
 			});
 		});
-		
+		describe('Level Validation', () => {
+			test.todo('Spell Level Is Required; If One Is Not Passed In And Error Should Be Thrown');
+			test.todo('If No Spell Level Is Passed In Return With An Error Message');
+			test.todo('If A Spell Level, Not Of Numbers 0-9 Are Passed In, Throw A Validation Error');
+		});
+		describe('School Validation', () => {
+			test.todo('School Is Required, If None Is Passed In, Throw An Error');
+			test.todo('If no school is passed in, Validation Error Should Be Thrown');
+			test.todo('If School Is Not One of The Enums, Throw A Validation Error');
+		});
+		describe('Casting Time Validation', () => {
+			test.todo('Casting Time Is Required; If None Is Provided, Throw An error,');
+			test.todo('If No Casting Time Is Provided, Throw a Validation Error');
+		});
+		describe('Range Validation', () => {
+			test.todo('Range Is Required; If None Is Passed In Expect An Error');
+			test.todo('If No Range Is Passed In, Return A Validation Error');
+		});
+		describe('Components Validation', () => {
+			test.todo('Components Are Required; If None Is Provided, Expect An Error');
+			test.todo('If No Component Is Passed In, Throw A Validation Error');
+		});
+		describe('Duration Validation', () => {
+			test.todo('Duration Is Required; If None Is Provided Throw An error');
+			test.todo('If No duration is provided, expect a Validation error');
+		});
+		describe('Description Validation', () => {
+			test.todo('Description Is Required; If None Is Provided, Expect An error');
+			test.todo('If No Description Is Provided, Expect A Validation Error');
+		});
+		describe('Concentration Validation', () => {
+			test.todo('Concentration Is Required, If None Is provided, Throw An Error');
+			test.todo('Expect a validation error if no concentration value is provided');
+		});
 	});
 });
