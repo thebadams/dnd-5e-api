@@ -3,7 +3,9 @@
     "outDir": "./built",
     "allowJs": true,
     "target": "es5",
-    "sourceMap": true
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "./src/**/*"

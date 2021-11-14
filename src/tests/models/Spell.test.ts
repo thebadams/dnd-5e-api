@@ -1,5 +1,5 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import * as mongoose from 'mongoose';
+import mongoose = require('mongoose');
 import Spell, {ISpell} from '../../models/Spell';
 
 describe('Spell Schema', () => {
