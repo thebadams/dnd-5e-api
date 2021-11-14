@@ -45,7 +45,7 @@ jspm_packages/
 typings/
 
 # Typescript build files
-built/
+lib/
 
 # TypeScript cache
 *.tsbuildinfo
