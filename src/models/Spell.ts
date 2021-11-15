@@ -8,22 +8,22 @@ export interface ISpell {
   school: string;
   castingTime: string;
   range: string;
-  components: {
-    v: boolean;
-    s: boolean;
-    m: string;
-  };
+  components: IComponents;
   duration: string;
-  description: {
-    main: string;
-    atHigherLevels: string;
-  };
+  description: IDescription;
+	concentration: boolean;
+	ritual: boolean;
 }
 
 export interface IComponents {
 	v: boolean;
 	s: boolean;
 	m: string;
+}
+
+export interface IDescription {
+	main: string;
+	atHigherLevels?: string;
 }
 
 const spellSchema = new Schema<ISpell>({
@@ -44,7 +44,9 @@ const spellSchema = new Schema<ISpell>({
 	description: {
 		main: String,
 		atHigherLevels: String
-	}
+	},
+	concentration: Boolean,
+	ritual: Boolean
 });
 
 const Spell = mongoose.model<ISpell>('Spell', spellSchema);
