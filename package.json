@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "An API For Dungeons and Dragons 5th Edition, developed using a TDD mindset",
   "main": "index.js",
+	"type":"module",
   "scripts": {
-    "test": "jest", 
+		"lint": "eslint src --ext .ts",
+		"lint:fix": "npm run lint -- --fix",
+		"test": "npm run lint:fix && npm run test:run",
+    "test:run": "jest", 
     "compile": "tsc"
   },
   "repository": {
