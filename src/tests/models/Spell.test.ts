@@ -1,6 +1,8 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import Spell, {ISpell, IComponents, IDescription} from '../../models/Spell';
+import {LevelEnum} from '../../constants/levels';
+import { SchoolsEnum } from '../../constants/schools';
 
 describe('Spell Schema', () => {
 	let mongod : MongoMemoryServer;
@@ -32,8 +34,8 @@ describe('Spell Schema', () => {
 			};
 			const spellInfo: ISpell = {
 				name: 'Fireball',
-				level: 3,
-				school: 'Evocation',
+				level: LevelEnum.THREE,
+				school: SchoolsEnum.EVOCATION,
 				castingTime: '1 Action',
 				range: '150 Ft',
 				components,
