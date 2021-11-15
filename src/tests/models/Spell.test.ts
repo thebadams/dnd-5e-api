@@ -45,7 +45,7 @@ describe('Spell Schema', () => {
 				ritual: false
 			};
 			newSpell = await Spell.create(spellInfo);
-			console.log(newSpell);
+			//console.log(newSpell);
 		});
 		it('Should Have An _id Property', () => {
 			expect(newSpell).toHaveProperty('_id');
