@@ -196,13 +196,15 @@ describe('Spell Schema', () => {
 			});
 			test('Spell Name Reqired; Validation Message Is "Name Must Be Provided"', () => {
 				const expected  = {
-					properties: expect.objectContaining({message: 'Name Must Be Provided', type: 'required', path: 'name'}
-					),
-					kind: 'required',
-					path: 'name'
+					name: expect.objectContaining({
+						properties: expect.objectContaining({ message: 'Name Must Be Provided', type: 'required', path: 'name' }
+						),
+						kind: 'required',
+						path: 'name'
+					})
+					
 				};
-				expect(badSpell).toHaveProperty('errors');
-				expect(badSpell.errors).toHaveProperty('name', expect.objectContaining(expected));
+				expect(badSpell).toHaveProperty('errors', expect.objectContaining(expected));
         
 			});
 		});
