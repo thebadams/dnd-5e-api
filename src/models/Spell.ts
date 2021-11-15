@@ -41,7 +41,14 @@ const spellSchema = new Schema<ISpell>({
 			message: '{VALUE} Is Not A Valid Spell Level'
 		}
 	},
-	school: String,
+	school: {
+		type: String,
+		required: [true, 'Spell School Is Required'],
+		enum: {
+			values: schoolsTuple,
+			message: '{VALUE} Is Not A Valid Spell School'
+		}
+	},
 	castingTime: String,
 	range: String,
 	components: {
