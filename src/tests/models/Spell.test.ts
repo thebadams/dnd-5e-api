@@ -149,10 +149,14 @@ describe('Spell Schema', () => {
 			});
 		});
 		describe('Concentration Property', () => {
-			test.todo('New Spell Should Have A Property, "concentration", and it should be the value, "false"');
+			test('New Spell Should Have A Property, "concentration", and it should be the value, "false"', () => {
+				expect(newSpell).toHaveProperty('concentration', false);
+			});
 		});
 		describe('Ritual Property', () => {
-			test.todo('New Spell Should Have a Property, "concentration", and it should be the value, "false"');
+			test('New Spell Should Have a Property, "ritual", and it should be the value, "false"', () => {
+				expect(newSpell).toHaveProperty('ritual', false);
+			});
 		});
     
 	});
