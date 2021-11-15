@@ -166,13 +166,13 @@ describe('Spell Schema', () => {
 		describe('Name Validation', () => {
 			let badSpell: mongoose.Error.ValidationError;
 			beforeAll(async () => {
-				const components = {
+				const components : IComponents = {
 					v: true,
 					s: true,
 					m: 'bat guano and sulfur'
 				};
 
-				const description = {
+				const description : IDescription = {
 					main: 'A Ball of Fire Appears, Doing Fire Damage',
 					atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
 				};
@@ -209,8 +209,50 @@ describe('Spell Schema', () => {
 			});
 		});
 		describe('Level Validation', () => {
-			test.todo('Spell Level Is Required; If One Is Not Passed In And Error Should Be Thrown');
-			test.todo('If No Spell Level Is Passed In Return With An Error Message');
+			let badSpell: mongoose.Error.ValidationError;
+			beforeAll(async () => {
+				const components: IComponents = {
+					v: true,
+					s: true,
+					m: 'bat guano and sulfur'
+				};
+
+				const description: IDescription = {
+					main: 'A Ball of Fire Appears, Doing Fire Damage',
+					atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
+				};
+				const badSpellInfo = {
+					name: 'Fireball',
+					// level: 3,
+					school: 'Evocation',
+					castingTime: '1 Action',
+					range: '150 Ft',
+					components,
+					duration: 'Instantaneous',
+					description
+				};
+
+
+				badSpell = await Spell.create(badSpellInfo).catch((e) => e);
+				//console.log(badSpell);
+
+
+			});
+			test('Spell Level Is Required; If One Is Not Passed In And Error Should Be Thrown', () => {
+				expect(badSpell).toBeInstanceOf(mongoose.Error.ValidationError);
+			});
+			test('If No Spell Level Is Passed In Return With An Error Message', () => {
+				const expected = {
+					level: expect.objectContaining({
+						properties: expect.objectContaining({ message: 'Level Must Be Provided', type: 'required', path: 'level' }
+						),
+						kind: 'required',
+						path: 'level'
+					})
+
+				};
+				expect(badSpell).toHaveProperty('errors', expect.objectContaining(expected));
+			});
 			test.todo('If A Spell Level, Not Of Numbers 0-9 Are Passed In, Throw A Validation Error');
 		});
 		describe('School Validation', () => {

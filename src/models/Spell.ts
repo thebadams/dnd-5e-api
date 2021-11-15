@@ -31,7 +31,10 @@ const spellSchema = new Schema<ISpell>({
 		type: String,
 		required: [true, 'Name Must Be Provided']
 	},
-	level: Number,
+	level:{
+		type: Number,
+		required: [true, 'Level Must Be Provided']
+	},
 	school: String,
 	castingTime: String,
 	range: String,
