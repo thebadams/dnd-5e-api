@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { schoolsTuple } from '../constants/schools';
 
 const Schema = mongoose.Schema;
 
@@ -33,7 +34,11 @@ const spellSchema = new Schema<ISpell>({
 	},
 	level:{
 		type: Number,
-		required: [true, 'Level Must Be Provided']
+		required: [true, 'Level Must Be Provided'],
+		enum: {
+			values:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			message: '{VALUE} Is Not A Valid Spell Level'
+		}
 	},
 	school: String,
 	castingTime: String,

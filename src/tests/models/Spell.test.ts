@@ -210,6 +210,7 @@ describe('Spell Schema', () => {
 		});
 		describe('Level Validation', () => {
 			let badSpell: mongoose.Error.ValidationError;
+			let badSpellLevel: mongoose.Error.ValidationError;
 			beforeAll(async () => {
 				const components: IComponents = {
 					v: true,
@@ -231,9 +232,14 @@ describe('Spell Schema', () => {
 					duration: 'Instantaneous',
 					description
 				};
+				const badSpellLevelInfo = {
+					...badSpellInfo, level: 10
+				};
 
 
 				badSpell = await Spell.create(badSpellInfo).catch((e) => e);
+				badSpellLevel = await Spell.create(badSpellLevelInfo).catch((e) => e);
+				//console.log(badSpellLevel.errors);
 				//console.log(badSpell);
 
 
@@ -253,7 +259,23 @@ describe('Spell Schema', () => {
 				};
 				expect(badSpell).toHaveProperty('errors', expect.objectContaining(expected));
 			});
-			test.todo('If A Spell Level, Not Of Numbers 0-9 Are Passed In, Throw A Validation Error');
+			test('If A Spell Level, Not Of Numbers 0-9 Are Passed In, Throw A Validation Error', () => {
+				expect(badSpellLevel).toBeInstanceOf(mongoose.Error.ValidationError);
+			});
+			test('If A Spell Level Error Is Thrown, Message Should Be "Invalid Spell Level Provided"', () => {
+				const expected = {
+					level: expect.objectContaining({
+						properties: expect.objectContaining({
+							message: '10 Is Not A Valid Spell Level',
+							type: 'enum',
+							path: 'level'
+						}),
+						kind: 'enum',
+						path: 'level'
+					})
+				};
+				expect(badSpellLevel).toHaveProperty('errors', expect.objectContaining(expected));
+			});
 		});
 		describe('School Validation', () => {
 			test.todo('School Is Required, If None Is Passed In, Throw An Error');
