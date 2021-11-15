@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import Spell, {ISpell} from '../../models/Spell';
+import Spell, {ISpell, IComponents, IDescription} from '../../models/Spell';
 
 describe('Spell Schema', () => {
 	let mongod : MongoMemoryServer;
@@ -21,16 +21,16 @@ describe('Spell Schema', () => {
 	describe('Spell Schema Properties', () => {
 		let newSpell: ISpell;
 		beforeAll(async () => {
-			const components = {
+			const components: IComponents = {
 				v: true,
 				s: true,
 				m: 'a tiny ball of bat guano and sulfur'
 			};
-			const description = {
+			const description: IDescription = {
 				main: 'A Ball of Fire Appears, Doing Fire Damage',
 				atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
 			};
-			const spellInfo = {
+			const spellInfo: ISpell = {
 				name: 'Fireball',
 				level: 3,
 				school: 'Evocation',
@@ -38,7 +38,9 @@ describe('Spell Schema', () => {
 				range: '150 Ft',
 				components,
 				duration: 'Instantaneous',
-				description
+				description,
+				concentration: false,
+				ritual: false
 			};
 			newSpell = await Spell.create(spellInfo);
 			console.log(newSpell);
