@@ -43,7 +43,7 @@ const spellSchema = new Schema<ISpell>({
 	},
 	school: {
 		type: String,
-		required: [true, 'Spell School Is Required'],
+		required: [true, 'School Must Be Provided'],
 		enum: {
 			values: schoolsTuple,
 			message: '{VALUE} Is Not A Valid Spell School'

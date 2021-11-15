@@ -278,9 +278,71 @@ describe('Spell Schema', () => {
 			});
 		});
 		describe('School Validation', () => {
-			test.todo('School Is Required, If None Is Passed In, Throw An Error');
-			test.todo('If no school is passed in, Validation Error Should Be Thrown');
-			test.todo('If School Is Not One of The Enums, Throw A Validation Error');
+			let badSpell : mongoose.Error.ValidationError;
+			let badSpellSchool: mongoose.Error.ValidationError;
+			beforeAll(async () => {
+				const components: IComponents = {
+					v: true,
+					s: true,
+					m: 'bat guano and sulfur'
+				};
+
+				const description: IDescription = {
+					main: 'A Ball of Fire Appears, Doing Fire Damage',
+					atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
+				};
+				const badSpellInfo = {
+					name: 'Fireball',
+					level: 3,
+					//school: 'Evocation',
+					castingTime: '1 Action',
+					range: '150 Ft',
+					components,
+					duration: 'Instantaneous',
+					description
+				};
+				const badSpellSchoolInfo = {
+					...badSpellInfo, school: 'Evo'
+				};
+
+
+				badSpell = await Spell.create(badSpellInfo).catch((e) => e);
+				badSpellSchool = await Spell.create(badSpellSchoolInfo).catch((e) => e);
+				//console.log(badSpellLevel.errors);
+				//console.log(badSpell);
+
+
+			});
+			test('School Is Required, If None Is Passed In, Throw An Error', () => {
+				expect(badSpell).toBeInstanceOf(mongoose.Error.ValidationError);
+			});
+			test('If No School Is Pass In, the Error Message Should Be "Spell School Is Required"', () => {
+				const expected = {
+					school: expect.objectContaining({
+						properties: expect.objectContaining({ message: 'School Must Be Provided', type: 'required', path: 'school' }
+						),
+						kind: 'required',
+						path: 'school'
+					})
+
+				};
+				expect(badSpell).toHaveProperty('errors', expect.objectContaining(expected));
+			});
+			test('If A Wrong Spell School Is Provided, Throw A Validation Error', () => {
+				expect(badSpellSchool).toBeInstanceOf(mongoose.Error.ValidationError);
+			});
+			test('If School Is Provided Value, "Evo", Message Should Be "Evo Is Not A Valid Spell School"', () => {
+				const expected = {
+					school: expect.objectContaining({
+						properties: expect.objectContaining({ message: 'Evo Is Not A Valid Spell School', type: 'enum', path: 'school' }
+						),
+						kind: 'enum',
+						path: 'school'
+					})
+
+				};
+				expect(badSpellSchool).toHaveProperty('errors', expect.objectContaining(expected));
+			});
 		});
 		describe('Casting Time Validation', () => {
 			test.todo('Casting Time Is Required; If None Is Provided, Throw An error,');
