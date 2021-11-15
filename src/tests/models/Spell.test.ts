@@ -149,8 +149,10 @@ describe('Spell Schema', () => {
 			});
 		});
 		describe('Concentration Property', () => {
-			test.todo('New Spell Should Have A Property, "concentration"');
-			test.todo('Concentration Property Should Be The Boolean: false');
+			test.todo('New Spell Should Have A Property, "concentration", and it should be the value, "false"');
+		});
+		describe('Ritual Property', () => {
+			test.todo('New Spell Should Have a Property, "concentration", and it should be the value, "false"');
 		});
     
 	});
@@ -231,6 +233,10 @@ describe('Spell Schema', () => {
 		describe('Concentration Validation', () => {
 			test.todo('Concentration Is Required, If None Is provided, Throw An Error');
 			test.todo('Expect a validation error if no concentration value is provided');
+		});
+		describe('Ritual Validation', () => {
+			test.todo('Ritual Is Required, IF none is provided, trow an Error');
+			test.todo('Expect a validation error if no concentration valude is provided');
 		});
 	});
 });
