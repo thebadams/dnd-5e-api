@@ -262,7 +262,7 @@ describe('Spell Schema', () => {
 			test('If A Spell Level, Not Of Numbers 0-9 Are Passed In, Throw A Validation Error', () => {
 				expect(badSpellLevel).toBeInstanceOf(mongoose.Error.ValidationError);
 			});
-			test('If A Spell Level Error Is Thrown, Message Should Be "Invalid Spell Level Provided"', () => {
+			test('If A Spell Level Error Is Thrown, Message Should Be "10 Is Not A Valid Spell Level"', () => {
 				const expected = {
 					level: expect.objectContaining({
 						properties: expect.objectContaining({
