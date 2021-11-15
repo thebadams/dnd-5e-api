@@ -1,7 +1,7 @@
 import {SchoolsEnum, schoolsTuple} from '../../constants/schools';
 
 describe('Schools Enum', () => {
-	console.log(SchoolsEnum);
+	//console.log(SchoolsEnum);
 	test('Schools Should Be An Enum', () => {
 		expect(typeof SchoolsEnum).toBe('object');
 	});

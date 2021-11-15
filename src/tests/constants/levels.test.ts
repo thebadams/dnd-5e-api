@@ -1,7 +1,7 @@
 import { levelTuple, LevelEnum } from '../../constants/levels';
 
 describe('Schools Enum', () => {
-	console.log(LevelEnum);
+	//console.log(LevelEnum);
 	test('Schools Should Be An Enum', () => {
 		expect(typeof LevelEnum).toBe('object');
 	});
