@@ -665,7 +665,7 @@ describe('Spell Schema', () => {
 					duration: 'Instantaneous',
 					description,
 					concentration: false,
-					ritual: false
+					//ritual: false
 				};
 
 
