@@ -643,8 +643,53 @@ describe('Spell Schema', () => {
 			});
 		});
 		describe('Ritual Validation', () => {
-			test.todo('Ritual Is Required, IF none is provided, trow an Error');
-			test.todo('Expect a validation error if no concentration valude is provided');
+			let badSpell: mongoose.Error.ValidationError;
+			beforeAll(async () => {
+				const components: IComponents = {
+					v: true,
+					s: true,
+					m: 'bat guano and sulfur'
+				};
+
+				const description: IDescription = {
+					main: 'A Ball of Fire Appears, Doing Fire Damage',
+					atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
+				};
+				const badSpellInfo = {
+					name: 'Fireball',
+					level: 3,
+					school: 'Evocation',
+					castingTime: '1 Action',
+					range: '150 Ft',
+					components,
+					duration: 'Instantaneous',
+					description,
+					concentration: false,
+					ritual: false
+				};
+
+
+				badSpell = await Spell.create(badSpellInfo).catch((e) => e);
+				//console.log(badSpellLevel.errors);
+				//console.log(badSpell);
+
+
+			});
+			test('Ritual Is Required; If None Is Provided, Throw An error', () => {
+				expect(badSpell).toBeInstanceOf(mongoose.Error.ValidationError);
+			});
+			test('If No Ritual Is Provided, Message Should Be "Ritual Must Be Provided"', () => {
+				const expected = {
+					ritual: expect.objectContaining({
+						properties: expect.objectContaining({ message: 'Ritual Must Be Provided', type: 'required', path: 'ritual' }
+						),
+						kind: 'required',
+						path: 'ritual'
+					})
+
+				};
+				expect(badSpell).toHaveProperty('errors', expect.objectContaining(expected));
+			});
 		});
 	});
 });
