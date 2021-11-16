@@ -58,18 +58,33 @@ const spellSchema = new Schema<ISpell>({
 		type: String,
 		required: [true, 'Range Must Be Provided']
 	},
-	components: {
-		v: Boolean,
-		s: Boolean,
-		m: String
+	components:{
+		type: {
+			v: Boolean,
+			s: Boolean,
+			m: String
+		},
+		required: [true, 'Components Must Be Provided']
+	} ,
+	duration: {
+		type: String,
+		required: [true, 'Duration Must Be Provided']
 	},
-	duration: String,
 	description: {
-		main: String,
-		atHigherLevels: String
+		type: {
+			main: String,
+			atHigherLevels: String
+		}, 
+		required: [true, 'Description Must Be Provided']
 	},
-	concentration: Boolean,
-	ritual: Boolean
+	concentration: {
+		type: Boolean,
+		required: [true, 'Concentration Must Be Provided']
+	},
+	ritual: {
+		type: Boolean,
+		required: [true, 'Ritual Must Be Provided']
+	}
 });
 
 const Spell = mongoose.model<ISpell>('Spell', spellSchema);

@@ -185,7 +185,9 @@ describe('Spell Schema', () => {
 					range: '150 Ft',
 					components,
 					duration: 'Instantaneous',
-					description
+					description,
+					concentration: false,
+					ritual: false
 				};
 
 
@@ -232,7 +234,9 @@ describe('Spell Schema', () => {
 					range: '150 Ft',
 					components,
 					duration: 'Instantaneous',
-					description
+					description,
+					concentration: false,
+					ritual: false
 				};
 				const badSpellLevelInfo = {
 					...badSpellInfo, level: 10
@@ -301,7 +305,9 @@ describe('Spell Schema', () => {
 					range: '150 Ft',
 					components,
 					duration: 'Instantaneous',
-					description
+					description,
+					ritual: false,
+					concentration: false
 				};
 				const badSpellSchoolInfo = {
 					...badSpellInfo, school: 'Evo'
@@ -440,9 +446,54 @@ describe('Spell Schema', () => {
 				expect(badSpell).toHaveProperty('errors', expect.objectContaining(expected));
 			});
 		});
-		describe('Components Validation', () => {
-			test.todo('Components Are Required; If None Is Provided, Expect An Error');
-			test.todo('If No Component Is Passed In, Throw A Validation Error');
+		describe('Range Validation', () => {
+			let badSpell: mongoose.Error.ValidationError;
+			beforeAll(async () => {
+				// const components: IComponents = {
+				// 	v: true,
+				// 	s: true,
+				// 	m: 'bat guano and sulfur'
+				// };
+
+				const description: IDescription = {
+					main: 'A Ball of Fire Appears, Doing Fire Damage',
+					atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
+				};
+				const badSpellInfo = {
+					name: 'Fireball',
+					level: 3,
+					school: 'Evocation',
+					castingTime: '1 Action',
+					range: '150 Ft',
+					//components,
+					duration: 'Instantaneous',
+					description,
+					concentration: false,
+					ritual: false
+				};
+
+
+				badSpell = await Spell.create(badSpellInfo).catch((e) => e);
+				//console.log(badSpellLevel.errors);
+				//console.log(badSpell);
+
+
+			});
+			test('Range Is Required; If None Is Provided, Throw An error', () => {
+				expect(badSpell).toBeInstanceOf(mongoose.Error.ValidationError);
+			});
+			test('If No Components Are Provided, Message Should Be "Components Must Be Provided"', () => {
+				const expected = {
+					components: expect.objectContaining({
+						properties: expect.objectContaining({ message: 'Components Must Be Provided', type: 'required', path: 'components' }
+						),
+						kind: 'required',
+						path: 'components'
+					})
+
+				};
+				expect(badSpell).toHaveProperty('errors', expect.objectContaining(expected));
+			});
 		});
 		describe('Duration Validation', () => {
 			test.todo('Duration Is Required; If None Is Provided Throw An error');
