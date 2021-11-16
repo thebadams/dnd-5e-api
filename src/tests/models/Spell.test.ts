@@ -394,8 +394,51 @@ describe('Spell Schema', () => {
 			});
 		});
 		describe('Range Validation', () => {
-			test.todo('Range Is Required; If None Is Passed In Expect An Error');
-			test.todo('If No Range Is Passed In, Return A Validation Error');
+			let badSpell: mongoose.Error.ValidationError;
+			beforeAll(async () => {
+				const components: IComponents = {
+					v: true,
+					s: true,
+					m: 'bat guano and sulfur'
+				};
+
+				const description: IDescription = {
+					main: 'A Ball of Fire Appears, Doing Fire Damage',
+					atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
+				};
+				const badSpellInfo = {
+					name: 'Fireball',
+					level: 3,
+					school: 'Evocation',
+					castingTime: '1 Action',
+					//range: '150 Ft',
+					components,
+					duration: 'Instantaneous',
+					description
+				};
+
+
+				badSpell = await Spell.create(badSpellInfo).catch((e) => e);
+				//console.log(badSpellLevel.errors);
+				//console.log(badSpell);
+
+
+			});
+			test('Range Is Required; If None Is Provided, Throw An error', () => {
+				expect(badSpell).toBeInstanceOf(mongoose.Error.ValidationError);
+			});
+			test('If No Range Is Provided, Message Should Be "Casting Time Must Be Provided"', () => {
+				const expected = {
+					range: expect.objectContaining({
+						properties: expect.objectContaining({ message: 'Range Must Be Provided', type: 'required', path: 'range' }
+						),
+						kind: 'required',
+						path: 'range'
+					})
+
+				};
+				expect(badSpell).toHaveProperty('errors', expect.objectContaining(expected));
+			});
 		});
 		describe('Components Validation', () => {
 			test.todo('Components Are Required; If None Is Provided, Expect An Error');

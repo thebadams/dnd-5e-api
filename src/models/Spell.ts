@@ -54,7 +54,10 @@ const spellSchema = new Schema<ISpell>({
 		type:String,
 		required: [true, 'Casting Time Must Be Provided']
 	},
-	range: String,
+	range: {
+		type: String,
+		required: [true, 'Range Must Be Provided']
+	},
 	components: {
 		v: Boolean,
 		s: Boolean,
