@@ -50,7 +50,10 @@ const spellSchema = new Schema<ISpell>({
 			message: '{VALUE} Is Not A Valid Spell School'
 		}
 	},
-	castingTime: String,
+	castingTime: {
+		type:String,
+		required: [true, 'Casting Time Must Be Provided']
+	},
 	range: String,
 	components: {
 		v: Boolean,

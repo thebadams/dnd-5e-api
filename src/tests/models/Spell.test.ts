@@ -348,36 +348,34 @@ describe('Spell Schema', () => {
 		});
 		describe('Casting Time Validation', () => {
 			let badSpell: mongoose.Error.ValidationError;
-			beforeAll(() => {
-				beforeAll(async () => {
-					const components: IComponents = {
-						v: true,
-						s: true,
-						m: 'bat guano and sulfur'
-					};
+			beforeAll(async () => {
+				const components: IComponents = {
+					v: true,
+					s: true,
+					m: 'bat guano and sulfur'
+				};
 
-					const description: IDescription = {
-						main: 'A Ball of Fire Appears, Doing Fire Damage',
-						atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
-					};
-					const badSpellInfo = {
-						name: 'Fireball',
-						level: 3,
-						school: 'Evocation',
-						//castingTime: '1 Action',
-						range: '150 Ft',
-						components,
-						duration: 'Instantaneous',
-						description
-					};
-
-
-					badSpell = await Spell.create(badSpellInfo).catch((e) => e);
-					//console.log(badSpellLevel.errors);
-					//console.log(badSpell);
+				const description: IDescription = {
+					main: 'A Ball of Fire Appears, Doing Fire Damage',
+					atHigherLevels: 'When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.'
+				};
+				const badSpellInfo = {
+					name: 'Fireball',
+					level: 3,
+					school: 'Evocation',
+					//castingTime: '1 Action',
+					range: '150 Ft',
+					components,
+					duration: 'Instantaneous',
+					description
+				};
 
 
-				});
+				badSpell = await Spell.create(badSpellInfo).catch((e) => e);
+				//console.log(badSpellLevel.errors);
+				//console.log(badSpell);
+
+
 			});
 			test('Casting Time Is Required; If None Is Provided, Throw An error', () => {
 				expect(badSpell).toBeInstanceOf(mongoose.Error.ValidationError);
