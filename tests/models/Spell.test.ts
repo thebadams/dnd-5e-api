@@ -1,8 +1,8 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import Spell, {ISpell, IComponents, IDescription} from '../../models/Spell';
-import {LevelEnum} from '../../constants/levels';
-import { SchoolsEnum } from '../../constants/schools';
+import Spell, {ISpell, IComponents, IDescription} from '../../src/models/Spell';
+import {LevelEnum} from '../../src/constants/levels';
+import { SchoolsEnum } from '../../src/constants/schools';
 
 describe('Spell Schema', () => {
 	let mongod : MongoMemoryServer;

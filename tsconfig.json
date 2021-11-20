@@ -10,7 +10,5 @@
     "moduleResolution": "node"
   },
   "include": [
-    "./src/**/*"
-  ],
-  "exclude": ["**/*.test*"]
+    "./src/**/*"],
 }
