@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { schoolsTuple } from '../../../constants/schools';
-import { levelTuple } from '../../../constants/levels';
+import { schoolsTuple } from '../../../constants/schools/schools';
+import { levelTuple } from '../../../constants/levels/levels';
 
 const Schema = mongoose.Schema;
 type Levels = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;

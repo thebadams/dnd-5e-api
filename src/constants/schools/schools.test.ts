@@ -1,4 +1,4 @@
-import {SchoolsEnum, schoolsTuple} from '../../src/constants/schools';
+import {SchoolsEnum, schoolsTuple} from './schools';
 
 describe('Schools Enum', () => {
 	//console.log(SchoolsEnum);
