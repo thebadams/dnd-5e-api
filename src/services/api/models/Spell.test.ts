@@ -381,7 +381,6 @@ describe('Spell Schema', () => {
 			});
 		});
 		describe('Ritual Validation', () => {
-			let badSpell: mongoose.Error.ValidationError;
 			test('Ritual Is Required; If None Is Provided, Throw An error', () => {
 				expect(badSpell).toBeInstanceOf(mongoose.Error.ValidationError);
 			});
