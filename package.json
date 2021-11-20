@@ -9,7 +9,8 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint:fix && npm run test:run",
     "test:run": "jest --runInBand",
-    "compile": "tsc"
+    "compile": "tsc",
+		"install": "cd ./src/services/api/ && npm install"
   },
   "repository": {
     "type": "git",
