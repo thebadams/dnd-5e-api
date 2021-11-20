@@ -1,4 +1,4 @@
-import { levelTuple, LevelEnum } from '../../src/constants/levels';
+import { levelTuple, LevelEnum } from './levels';
 
 describe('Schools Enum', () => {
 	//console.log(LevelEnum);
