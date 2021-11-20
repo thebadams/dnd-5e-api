@@ -2,8 +2,8 @@
   "compilerOptions": {
     "outDir": "./lib",
     "allowJs": true,
-    "target": "es6",
-    "module": "es6",
+    "target": "es5",
+    "module": "CommonJS",
     "sourceMap": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
