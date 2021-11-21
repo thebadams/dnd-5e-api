@@ -1,6 +1,7 @@
 import { levelTuple, LevelEnum } from './levels';
 
 describe('Schools Enum', () => {
+	// console.log(process.env.MONGOOSECONNECTION);
 	//console.log(LevelEnum);
 	test('Schools Should Be An Enum', () => {
 		expect(typeof LevelEnum).toBe('object');

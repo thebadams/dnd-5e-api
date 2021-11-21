@@ -1,25 +1,35 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import Spell, {ISpell, IComponents, IDescription} from './Spell';
+import {ISpell, IComponents, IDescription, spellSchema } from './Spell';
 import {LevelEnum} from '../../../constants/levels/levels';
 import { SchoolsEnum } from '../../../constants/schools/schools';
+import {parse} from 'flatted';
+
+
+
 
 describe('Spell Schema', () => {
-	let mongod : MongoMemoryServer;
-	beforeAll(async () => {
-		mongod = await MongoMemoryServer.create();
-		const uri = mongod.getUri();
-		// const connectOptions = {
-		//   useUnifiedTopology: true,
-		//   useNewUrlParser: true
-		// }
-		await mongoose.connect(uri).then(() => console.log('Connected To Database'));
+	let Spell: any;
+	beforeAll(() => {
+		
+		const connection = global.MONGOOSECONNECTION;
+		Spell = connection.model('Spell', spellSchema); 
 	});
+	// let mongod : MongoMemoryServer;
+	// beforeAll(async () => {
+	// 	mongod = await MongoMemoryServer.create();
+	// 	const uri = mongod.getUri();
+	// 	// const connectOptions = {
+	// 	//   useUnifiedTopology: true,
+	// 	//   useNewUrlParser: true
+	// 	// }
+	// 	await mongoose.connect(uri).then(() => console.log('Connected To Database'));
+	// });
 
-	afterAll(async () => {
-		await mongoose.disconnect().then(() => console.log('Database Disconnected'));
-		await mongod.stop().then(() => console.log('Database Torn Down'));
-	});
+	// afterAll(async () => {
+	// 	await mongoose.disconnect().then(() => console.log('Database Disconnected'));
+	// 	await mongod.stop().then(() => console.log('Database Torn Down'));
+	// });
 	describe('Spell Schema Properties', () => {
 		let newSpell: ISpell;
 		beforeAll(async () => {

@@ -29,7 +29,7 @@ export interface IDescription {
 	atHigherLevels?: string;
 }
 
-const spellSchema = new Schema<ISpell>({
+export const spellSchema = new Schema<ISpell>({
 	name: {
 		type: String,
 		required: [true, 'Name Must Be Provided']
