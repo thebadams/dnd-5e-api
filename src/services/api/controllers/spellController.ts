@@ -3,8 +3,16 @@ import {Response, Request} from 'express';
 const spellController = {
 	create: async function (req: Request, res: Response) {
 		const { body } = req;
-		const newSpell = await Spell.create(body);
-		res.status(200).json(newSpell);
+		try{
+			const newSpell = await Spell.create(body);
+			res.status(200).json(newSpell);
+		} catch (e) {
+			res.status(400).json({
+				message: 'Failed To Create A Spell',
+				error: e
+			});
+		}
+		
 	}
 };
 

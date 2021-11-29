@@ -4,7 +4,7 @@ import {ISpell} from '../models/Spell';
 import {SchoolsEnum} from '../../../constants/schools/schools';
 import { LevelEnum} from '../../../constants/levels/levels';
 import mongoose from 'mongoose';
-import {Response, Request, response, request } from 'express';
+import {Response, Request } from 'express';
 
 
 
@@ -50,16 +50,7 @@ describe('Spell Controller', () => {
 				body
 			} as Request;
 
-			interface MockResponse {
-				send: () => any;
-				status: () => any;
-
-			}
-			const sendSpy = jest.spyOn(response, 'send');
-			// const mockResponse: Partial<Response> = {
-			// 	send: jest.fn().mockReturnThis(),
-			// 	status: jest.fn().mockReturnThis()
-			// };
+	
 			const mockResponse = () => {
 				const response: Partial<Response> = {};
 				response.json = jest.fn().mockReturnValue(response);
@@ -84,6 +75,43 @@ describe('Spell Controller', () => {
 			};
 			expect(res.json).toHaveBeenCalledWith(expect.objectContaining(expected));
 			// expect(mockResponse.status).toHaveBeenCalledWith(200);
+		});
+		test('When there is an error in the information passed to the request, and error of code 400 should be sent', async () => {
+			const body: Partial<ISpell> = {
+				// name: 'Fireball',
+				level: LevelEnum.THREE,
+				school: SchoolsEnum.EVOCATION,
+				castingTime: '1 Action',
+				range: '60 feet',
+				components: {
+					v: true,
+					s: true,
+					m: 'bat guano and sulfur'
+				},
+				duration: 'instantaneous',
+				description: {
+					main: 'Massive Fire Damage',
+					atHigherLevels: 'Even More Damage'
+				},
+				concentration: false,
+				ritual: false
+			};
+			const mockRequest = {
+				body
+			} as Request;
+
+			const mockResponse = () => {
+				const response: Partial<Response> = {};
+
+				response.status = jest.fn().mockReturnValue(response);
+				response.json = jest.fn().mockReturnValue(response);
+				return response;
+			};
+			const mockRes = mockResponse();
+			await spellController.create(mockRequest, mockRes as Response);
+			expect(mockRes.status).toHaveBeenCalledWith(400);
+			expect(mockRes.json).toHaveBeenCalledWith(expect.objectContaining({message: 'Failed To Create A Spell'}));
+
 		});
 	});
 });
