@@ -11,9 +11,13 @@ export interface ISpell {
   school: Schools;
   castingTime: string;
   range: string;
-  components: IComponents;
+  components: {
+		[key: string]: IComponents
+	};
   duration: string;
-  description: IDescription;
+  description: {
+		[key: string]: IDescription
+	};
 	concentration: boolean;
 	ritual: boolean;
 }
